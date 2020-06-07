@@ -1,0 +1,369 @@
+<style>
+    .textart {
+        font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+        line-height: 1;
+        font-size: 7px;
+        color: hsl(27, 50%, 47%);
+        background: linear-gradient(to top left, hsl(32, 100%, 50%), hsl(338, 78%, 28%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -text-fill-color: transparent;
+        margin: 0;
+    }
+
+    #siteinfo {
+        z-index: 20000;
+    }
+
+    /*log in */
+    .model-content {
+        background-color: #101214;
+        position: relative;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        outline: 0;
+    }
+
+    .modal-content .modal-header {
+        background-color: #0c0d0e;
+        padding: 40px 20px;
+        border-bottom: 1px solid #464646;
+        text-align: center;
+    }
+
+    .modal-content .modal-body {
+        background: #001302;
+        padding: 40px;
+        position: relative;
+        padding: 15px;
+    }
+
+    .modal-content .modal-footer {
+        background-color: #0c0d0e;
+        padding: 20px;
+        text-align: right;
+        border-top: 1px solid #464646;
+    }
+
+    .modal-content .modal-footer button {
+        background-color: #0c0d0e;
+        outline: none;
+        text-align: center;
+    }
+
+    .modal-content .modal-footer button span {
+        color: white;
+    }
+
+    .glow-effect {
+        width: 50px;
+        height: 50px;
+        font-size: 200%;
+        border: 1px solid grey;
+        color: #fff;
+        background: #111;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+    }
+
+    .glow-effect:before {
+        content: '';
+        background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    .glow-effect:hover {
+        background: transparent;
+        border: none;
+    }
+
+    .glow-effect:active:after {
+        background: transparent;
+    }
+
+    .glow-effect:hover:before {
+        opacity: 1;
+    }
+
+    .glow-effect:after {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #111;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+    /*Sign in / sign up*/
+    .su-align {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding-bottom: 8px;
+    }
+
+    .su-logo {
+        width: 120px;
+    }
+
+    .su-card {
+        margin-top: 28px;
+        height: 100%;
+        max-height: 446px;
+        width: 396px;
+        background: #121212;
+        border: 1px solid #373737;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: max-height 0.2s;
+    }
+
+    .su-extend {
+        max-height: 480px;
+    }
+
+    .su-head {
+        width: 100%;
+        display: flex;
+        height: 72px;
+        border-bottom: 1px solid #373737;
+        justify-content: space-between;
+    }
+
+    .su-head a {
+        height: 100%;
+        padding: 0 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: rgb(140, 140, 140);
+        font-size: 20px;
+        font-weight: 500;
+    }
+
+    .su-head .su-selected {
+        position: relative;
+        color: #00FF5C;
+        font-weight: 700;
+    }
+
+    .su-head .su-selected:after {
+        position: absolute;
+        content: "";
+        bottom: 0;
+        left: 0;
+        height: 5px;
+        width: 100%;
+        background: #00FF5C;
+        border-radius: 99px 99px 0 0;
+    }
+
+    #su-tabs {
+        height: calc(100% - 72px);
+        display: flex;
+    }
+
+    form.su-form {
+        width: 100%;
+        height: 100%;
+        flex-shrink: 0;
+        padding: 44px 38px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        right: 0;
+        transition: right 0.2s;
+    }
+
+    .su-extend form.su-form {
+        right: 100%;
+    }
+
+    .su-inputs {
+        width: 100%;
+        padding-top: 6px;
+    }
+
+    .su-input {
+        position: relative;
+        margin-bottom: 20px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .su-input input {
+        width: 100%;
+        font-size: 17px;
+        background: #1C1C1C;
+        border-radius: 8px;
+        padding: 16px 18px 16px 51px;
+        color: rgb(220, 220, 220);
+    }
+
+    .su-input img {
+        width: 16px;
+        position: absolute;
+        left: 19px;
+    }
+
+    .su-checkbox {
+        height: 40px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        cursor: pointer;
+    }
+
+    .su-checkbox input {
+        position: absolute;
+        opacity: 0;
+        height: 0;
+        width: 0;
+    }
+
+    .su-checkbox span {
+        display: flex;
+        align-items: center;
+        color: rgb(110, 110, 110);
+        font-size: 16px;
+        user-select: none;
+    }
+
+    .su-checkbox span:before {
+        content: "";
+        width: 22px;
+        height: 22px;
+        border-radius: 6px;
+        margin-right: 16px;
+        background-color: #1C1C1C;
+    }
+
+    .su-checkbox:hover input~span:before {
+        background-color: rgb(50, 50, 50);
+    }
+
+    .su-checkbox input:checked~span:before {
+        background-image: url(../images/checked.png);
+        background-size: cover;
+    }
+
+    .su-card button {
+        display: block;
+        background: #00FF5C;
+        padding: 14px 52px;
+        border-radius: 12px;
+        color: #003B15;
+        font-weight: 700;
+        font-size: 21px;
+        cursor: pointer;
+    }
+</style>
+
+<div class="modal fade" id="user-details-login" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="w-100 textart">
+
+                    ██╗░░░░░░█████╗░░██████╗░██╗███╗░░██╗░░░░██╗░██████╗██╗░██████╗░███╗░░██╗██╗░░░██╗██████╗░
+                    ██║░░░░░██╔══██╗██╔════╝░██║████╗░██║░░░██╔╝██╔════╝██║██╔════╝░████╗░██║██║░░░██║██╔══██╗
+                    ██║░░░░░██║░░██║██║░░██╗░██║██╔██╗██║░░██╔╝░╚█████╗░██║██║░░██╗░██╔██╗██║██║░░░██║██████╔╝
+                    ██║░░░░░██║░░██║██║░░╚██╗██║██║╚████║░██╔╝░░░╚═══██╗██║██║░░╚██╗██║╚████║██║░░░██║██╔═══╝░
+                    ███████╗╚█████╔╝╚██████╔╝██║██║░╚███║██╔╝░░░██████╔╝██║╚██████╔╝██║░╚███║╚██████╔╝██║░░░░░
+                    ╚══════╝░╚════╝░░╚═════╝░╚═╝╚═╝░░╚══╝╚═╝░░░░╚═════╝░╚═╝░╚═════╝░╚═╝░░╚══╝░╚═════╝░╚═╝░░░░░
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div class="su-align">
+                    <div class="su-card">
+                        <div class="su-head">
+                            <div></div>
+                            <a id="su-login" class="su-selected" href="#login">Login</a>
+                            <a id="su-register" href="#su-register">Register</a>
+                            <div></div>
+                        </div>
+                        <div id="su-tabs">
+                            <form class="su-form" method="GET" action="">
+                                <div class="su-inputs">
+                                    <div class="su-input" >
+                                        <input placeholder="Username" required pattern="^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$" type="text" name="su-username" id="su-username">
+                                        <img src="images/user.svg">
+                                    </div>
+                                    <div class="su-input">
+                                        <input placeholder="Password" required type="password" name="su-password" id="su-password">
+                                        <img src="images/pass.svg">
+                                    </div>
+                                    <label class="su-checkbox">
+                                        <input type="checkbox">
+                                        <span>Remember me</span>
+                                    </label>
+                                </div>
+                                <button type="button" onclick="detailProcessor();">Login</button>
+                            </form>
+                            <form class="su-form" method="GET" action="">
+                                <div class="su-inputs">
+                                    <div class="su-input">
+                                        <input placeholder="Email" required type="text" name="su-email" id="su-email">
+                                        <img src="images/mail.svg">
+                                    </div>
+                                    <div class="su-input">
+                                        <input placeholder="Username" required type="text" name="su-username" id="su-username">
+                                        <img src="images/user.svg">
+                                    </div>
+                                    <div class="su-input">
+                                        <input placeholder="Password" required type="password" name="su-password" id="su-password">
+                                        <img src="images/pass.svg">
+                                    </div>
+                                </div>
+                                <button type="button" onclick="detailProcessor();">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="close-modal" class="glow-effect" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

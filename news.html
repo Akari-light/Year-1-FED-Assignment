@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="author" content="Arvin Lum">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Covid-19 News">
+        <title>News</title>
+        <!--Initializing all required javascript and css modules.-->
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+        <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+        <link href="css/main.css" rel="stylesheet" type="text/css" />
+        <link href="css/loading.css" rel="stylesheet" type="text/css" />
+        <script src="js/include.js"></script>
+        <script src="js/nav-active.js"></script>
+        <script src="js/web_chat.js"></script>
+    </head>
+    
+
+<body>
+    <!-- Loading Animation -->
+    <div style="position:absolute;z-index:300;" class='loader__wrapper' id="loading-screen">
+        <div class='icon__container'>
+            <i class="fa fa-cloud"></i>
+        </div>
+        <div class='number__wrapper'>
+            <div class='number'></div>
+            <div class='number'></div>
+            <div class='number'></div>
+            <div class='number'></div>
+            <div class='number'></div>
+        </div>
+        <div class='icon--computer'></div>
+    </div>
+
+    <!--NavBar-->
+    <div w3-include-html="navbar.html"></div>
+    <div class="hb-navbar">
+        <div class="hb-hamburger-menu">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+        </div>
+
+        <ul id="no-user" class="hb-nav-list nav-login">
+            <li class="hb-nav-item ">
+                <a data-toggle="modal" data-target="#user-details-login" class="hb-nav-link">Log In</a>
+            </li>
+        </ul>
+
+        <ul id="user-present" class="hb-nav-list nav-login">
+            <li class="hb-nav-item ">
+                <a data-toggle="modal" data-target="#profile" class="hb-nav-link" id="username">username</a>
+            </li>
+        </ul>
+
+        <ul class="hb-nav-list">
+            <li class="hb-nav-item">
+                <a href="#" class="hb-nav-link"></a>
+            </li>
+        </ul>
+    </div>
+
+    <!--Content-->
+    <div id="news-header">
+        <div class="news-title">NEWS</div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div id="world-news" class="col-md-10 offset-md-1" >
+                <form class="search" action="" >
+                    <label for="nkeyword">news</label>
+                    <button type="submit"><i class="fa fa-search fa-lg"></i></button>
+                    <input id="nkeyword" class="input" type="text" placeholder="What do you want to search">
+                </form>
+                <div id="news-section" class="grid-container"></div>
+            </div>
+        </div>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div w3-include-html="footer.html"></div>
+    </footer>
+
+    <!--Site log in Modal-->
+    <div w3-include-html="sitemodal.html"></div>
+    <div w3-include-html="profile.html"></div>
+
+    <script src="js/script.js"></script>
+    <script>
+        includeHTML();
+        firstload();
+        //log in
+        $(window).on("hashchange", function () {
+            if (location.hash.slice(1) == "su-register") {
+                $(".su-card").addClass("su-extend");
+                $("#su-login").removeClass("su-selected");
+                $("#su-register").addClass("su-selected");
+            } else {
+                $(".su-card").removeClass("su-extend");
+                $("#su-login").addClass("su-selected");
+                $("#su-register").removeClass("su-selected");
+            }
+        });
+        $(window).trigger("hashchange");
+        $(window).on("load", function () {
+            setTimeout(function () {
+                $("#loading-screen").fadeOut("slow");
+
+            }, 1500);
+            setTimeout(function () {
+                $("#news-header").show();
+                $("#world-news").show();
+                $("#footer").show();
+            }, 1600);
+        });
+        function NavbarCollapse() {
+            if (document.getElementById("navbar-toggler-icon").getAttribute("aria-expanded") == "true") {
+                $("#news-header").show();
+                $("#world-news").show();
+                $("#footer").show();
+            }
+            else {
+                $("#news-header").hide();
+                $("#world-news").hide();
+                $("#footer").hide();
+            }
+        }
+        function showUserDetails() {
+            var noUser = document.getElementById("no-user");
+            var userPresent = document.getElementById("user-present");
+            var closemodal = document.getElementById("close-modal");
+            var closeprofile = document.getElementById("close-profile");
+            
+            if (noUser.style.display === "none") {
+                noUser.style.display = "block";
+                userPresent.style.display = "none"
+                closeprofile.click()
+            }
+            else {
+                noUser.style.display = "none";
+                userPresent.style.display = "block"
+                closemodal.click()
+            }
+            return false;
+        };
+
+        function detailProcessor() {
+            var usernamevalue = document.getElementById("su-username").value;
+            var passwordvalue = document.getElementById("su-password").value;
+            var emailvalue = document.getElementById("su-email").value;
+            var hashedPassword = ""
+
+            if (usernamevalue == '') {
+                alert('Username is empty!')
+                return
+            }
+            else if (passwordvalue == '') {
+                alert('Password is empty!')
+                return
+            }
+
+            var profilePanel = document.getElementById("profile-panel");
+            var navBar = document.getElementById("username");
+            profilePanel.innerText = "Control Panel: " + usernamevalue;
+            navBar.innerText = usernamevalue;
+            document.getElementById("p-username").value = usernamevalue;
+            document.getElementById("p-email").value = emailvalue;
+            for ( i= 0; i < passwordvalue.length; i++ ) {
+                hashedPassword = hashedPassword + "*"
+            }
+            document.getElementById("p-password").value = hashedPassword;
+        };
+
+        function upadateProfile() {
+            var usernamevalue = document.getElementById("p-username").value;
+            var passwordvalue = document.getElementById("p-password").value;
+            var emailvalue = document.getElementById("p-email").value;
+            var hashedPassword = ""
+            
+            var navBar = document.getElementById("username");
+            profilePanel.innerText = ""
+            profilePanel.innerText = "Control Panel: " + usernamevalue;
+        
+            document.getElementById("p-username").value = usernamevalue;
+            document.getElementById("p-email").value = emailvalue;
+            for ( i= 0; i < passwordvalue.length; i++ ) {
+                hashedPassword = hashedPassword + "*"
+            }
+            document.getElementById("p-password").value = hashedPassword;
+        };
+    </script>
+</body>
+
+</html>

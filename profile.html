@@ -1,0 +1,225 @@
+<style>
+    .textart-2 {
+        font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+        line-height: 1;
+        font-size: 10px;
+        color: hsl(27, 50%, 47%);
+        background: linear-gradient(to top left, hsl(32, 100%, 50%), hsl(338, 78%, 28%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        -text-fill-color: transparent;
+        margin: 0;
+    }
+
+    #siteinfo {
+        z-index: 20000;
+    }
+
+    /*log in */
+    .model-content {
+        background-color: #101214;
+        position: relative;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, .2);
+        border-radius: 6px;
+        outline: 0;
+    }
+
+    .modal-content .modal-header {
+        background-color: #0c0d0e;
+        padding: 40px 20px;
+        border-bottom: 1px solid #464646;
+        text-align: center;
+    }
+
+    .modal-content .modal-body {
+        background: #001302;
+        padding: 40px;
+        position: relative;
+        padding: 15px;
+    }
+
+    .modal-content .modal-footer {
+        background-color: #0c0d0e;
+        padding: 20px;
+        text-align: right;
+        border-top: 1px solid #464646;
+    }
+
+    .modal-content .modal-footer button {
+        background-color: #0c0d0e;
+        outline: none;
+        text-align: center;
+    }
+
+    .modal-content .modal-footer button span {
+        color: white;
+    }
+
+    .glow-effect {
+        width: 50px;
+        height: 50px;
+        font-size: 200%;
+        border: 1px solid grey;
+        color: #fff;
+        background: #111;
+        position: relative;
+        z-index: 0;
+        border-radius: 10px;
+    }
+
+    .glow-effect:before {
+        content: '';
+        background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        background-size: 400%;
+        z-index: -1;
+        filter: blur(5px);
+        width: calc(100% + 4px);
+        height: calc(100% + 4px);
+        animation: glowing 20s linear infinite;
+        opacity: 0;
+        transition: opacity .3s ease-in-out;
+        border-radius: 10px;
+    }
+
+    .glow-effect:hover {
+        background: transparent;
+        border: none;
+    }
+
+    .glow-effect:active:after {
+        background: transparent;
+    }
+
+    .glow-effect:hover:before {
+        opacity: 1;
+    }
+
+    .glow-effect:after {
+        z-index: -1;
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background: #111;
+        left: 0;
+        top: 0;
+        border-radius: 10px;
+    }
+
+    @keyframes glowing {
+        0% {
+            background-position: 0 0;
+        }
+
+        50% {
+            background-position: 400% 0;
+        }
+
+        100% {
+            background-position: 0 0;
+        }
+    }
+
+
+    #profile-body {
+        font-family: monospace;
+        text-align: center;
+        padding: 20px;
+    }
+
+    #sub-title {
+        font-size: 85%;
+        color: #949BA2;
+        margin-bottom: 50px;
+    }
+
+    #profile-body label {
+        text-align: left;
+        color: #9ACC14;
+    }
+
+    #profile-body label i {
+        color: #949BA2;
+    }
+
+    #profile-body input,
+    #profile-body input:focus,
+    #profile-body input:active,
+    #profile-body input:hover {
+        outline: none;
+        border: none;
+        background: #394147;
+        color: #949ba2;
+    }
+
+    #profile-btn {
+        float: right;
+        margin: 10px 0 30px;
+        padding: 10px 20px;
+        font-size: large;
+        border-radius: 4px;
+        width: auto;
+        border: 1px solid #9ACC14;
+        vertical-align: middle;
+        background: transparent;
+        color: #949ba2;
+        font-size: 15px;
+        font-weight: 700;
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+        outline: none;
+    }
+</style>
+
+<div class="modal fade" id="profile" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h4 class="w-100 textart-2">
+
+                    ░██╗░░░░░░░██╗███████╗██╗░░░░░░█████╗░░█████╗░███╗░░░███╗███████╗
+                    ░██║░░██╗░░██║██╔════╝██║░░░░░██╔══██╗██╔══██╗████╗░████║██╔════╝
+                    ░╚██╗████╗██╔╝█████╗░░██║░░░░░██║░░╚═╝██║░░██║██╔████╔██║█████╗░░
+                    ░░████╔═████║░██╔══╝░░██║░░░░░██║░░██╗██║░░██║██║╚██╔╝██║██╔══╝░░
+                    ░░╚██╔╝░╚██╔╝░███████╗███████╗╚█████╔╝╚█████╔╝██║░╚═╝░██║███████╗
+                    ░░░╚═╝░░░╚═╝░░╚══════╝╚══════╝░╚════╝░░╚════╝░╚═╝░░░░░╚═╝╚══════╝
+                </h4>
+            </div>
+
+            <div class="modal-body">
+                <div id="profile-body">
+                    <form id="profile-form" method="GET">
+                        <h5 id="profile-panel">Control Panel: User</h5>
+                        <p id="sub-title">Manage and view settings related to your account.</p>
+                        <div>
+                            <label for="su-username"><i class="fa fa-user"></i> Username</label>
+                            <input type="text" required value="" name="su-username" id="p-username">
+                        </div>
+                        <div>
+                            <label for="su-email"><i class="fa fa-envelope"></i> E-Mail</label>
+                            <input type="text" required value="" name="su-email" id="p-email" pattern="^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$">
+                        </div>
+                        <div>
+                            <label for="su-password"><i class="fa fa-unlock-alt"></i> Password</label>
+                            <input type="text" required value="" name="su-password" id="p-password">
+                        </div>
+                        <div id="logout-btn">
+                            <button type="button" onclick="showUserDetails()" id="logout" ><i class="fa fa-sign-out"></i> Log Out</button>
+                        </div>
+                        <button  type="button" data-target="#profile" id="profile-btn" onclick="upadateProfile()">Save</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button id="close-profile" class="glow-effect" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

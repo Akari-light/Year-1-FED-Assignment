@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="author" content="Arvin Lum">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Covid-19 Situation">
+    <title>Current Situation on Covid-19</title>
+    <!--Initializing all required javascript and css modules.-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous">
+    </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+    </script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <link href='https://fonts.googleapis.com/css?family=Libre Baskerville' rel='stylesheet'>
+    <link href="css/main.css" rel="stylesheet" type="text/css" />
+    <link href="css/loading.css" rel="stylesheet" type="text/css" />
+    <script src="js/include.js"></script>
+    <script src="js/nav-active.js"></script>
+    <script src="js/web_chat.js"></script>
+</head>
+
+<body>
+    <!-- Loading Animation -->
+    <div style="position:absolute;z-index:300;" class='loader__wrapper' id="loading-screen">
+        <div class='icon__container'>
+            <i class="fa fa-cloud"></i>
+        </div>
+        <div class='number__wrapper'>
+            <div class='number'></div>
+            <div class='number'></div>
+            <div class='number'></div>
+            <div class='number'></div>
+            <div class='number'></div>
+        </div>
+        <div class='icon--computer'></div>
+    </div>
+
+    <!--NavBar-->
+    <div w3-include-html="navbar.html"></div>
+    <div class="hb-navbar">
+        <div class="hb-hamburger-menu">
+            <div class="line line-1"></div>
+            <div class="line line-2"></div>
+            <div class="line line-3"></div>
+        </div>
+
+        <ul id="no-user" class="hb-nav-list nav-login">
+            <li class="hb-nav-item ">
+                <a data-toggle="modal" data-target="#user-details-login" class="hb-nav-link">Log In</a>
+            </li>
+        </ul>
+
+        <ul id="user-present" class="hb-nav-list nav-login">
+            <li class="hb-nav-item ">
+                <a data-toggle="modal" data-target="#profile" class="hb-nav-link" id="username">username</a>
+            </li>
+        </ul>
+
+        <ul class="hb-nav-list">
+            <li class="hb-nav-item">
+                <a href="#section-1" class="hb-nav-link">Statistic</a>
+            </li>
+            <li class="hb-nav-item">
+                <a href="#section-2" class="hb-nav-link">section-2</a>
+            </li>
+            <li class="hb-nav-item">
+                <a href="#hero" class="hb-nav-link">Back to top</a>
+            </li>
+        </ul>
+    </div>
+
+    <!--Content-->
+    <div id="hero">
+        <div class="hero-inner">
+            <h6>COVID-19 Coronavirus Pandemic</h6>
+            <section id="statistic">
+                <h1>Coronavirus Cases:</h1>
+                <span>5,206,614</span>
+                <h1>Deaths:</h1>
+                <span>337,736</span>
+                <h1>Recovered:</h1>
+                <span>2,274,279</span>
+            </section>
+        </div>
+        <div id="section-1" class="img-seperator--bottom"></div>
+    </div>
+
+    <div id="table-stat" class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 offset-md-1 col-12">
+                <div class="title">
+                    <p>Reported Cases and Deaths for top 10 countries in the world and each region</p>
+                </div>
+                <div id="table-search">
+                    <input type="text" id="country-filter" onkeyup="filterFunction()"
+                        placeholder="Search for a country">
+                    <i class="fa fa-search fa-lg" style="float: right; margin-top: 10px;"></i>
+                </div>
+                <div class="tab">
+                    <button class="tablinks" onclick="openTab(event, 'All')" id="defaultOpen">All</button>
+                    <button class="tablinks" onclick="openTab(event, 'Asia')">Asia</button>
+                    <button class="tablinks" onclick="openTab(event, 'North America')">North America</button>
+                    <button class="tablinks" onclick="openTab(event, 'South America')">South America</button>
+                    <button class="tablinks" onclick="openTab(event, 'Africa')">Africa</button>
+                    <button class="tablinks" onclick="openTab(event, 'Europe')">Europe</button>
+                    <button class="tablinks" onclick="openTab(event, 'Oceania')">Oceania</button>
+
+                </div>
+
+                <div id="All" class="tabcontent">
+                    <table id="worldTable">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">World</td>
+                                <td>5,525,081</td>
+                                <td>+30,626</td>
+                                <td>347,106</td>
+                                <td>+672</td>
+                                <td>2,315,832</td>
+                                <td>2,862,143</td>
+                                <td>53,222</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">USA</td>
+                                <td class="td-text">1,686,791</td>
+                                <td class="td-new-cases">+355</td>
+                                <td class="td-text">99,311 </td>
+                                <td class="td-new-deaths">+11</td>
+                                <td class="td-text">451,745</td>
+                                <td class="td-text">1,135,735</td>
+                                <td class="td-text">17,135</td>
+                                <td class="td-text">14,749,756</td>
+                                <td class="td-text">330,806,424 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">Brazil</td>
+                                <td class="td-text">365,213</td>
+                                <td class="td-new-cases">+1,595</td>
+                                <td class="td-text">22,746 </td>
+                                <td class="td-new-deaths">+30</td>
+                                <td class="td-text">149,911</td>
+                                <td class="td-text">192,556</td>
+                                <td class="td-text">8,318</td>
+                                <td class="td-text">735,224</td>
+                                <td class="td-text">212,405,664 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">Russia</td>
+                                <td class="td-text">353,427</td>
+                                <td class="td-new-cases">+8,946</td>
+                                <td class="td-text">3,633 </td>
+                                <td class="td-new-deaths">+92</td>
+                                <td class="td-text">118,798</td>
+                                <td class="td-text">
+                                    <230,996</td> <td class="td-text">2,300
+                                </td>
+                                <td class="td-text">8,945,384</td>
+                                <td class="td-text">145,928,315 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">Spain</td>
+                                <td class="td-text">282,852</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">28,752 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">196,958</td>
+                                <td class="td-text">57,142</td>
+                                <td class="td-text">854</td>
+                                <td class="td-text">3,556,567</td>
+                                <td class="td-text">46,752,999 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">UK</td>
+                                <td class="td-text">259,559</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">36,793 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">N/A</td>
+                                <td class="td-text">N/A</td>
+                                <td class="td-text">1,559</td>
+                                <td class="td-text">3,458,905</td>
+                                <td class="td-text">67,850,075 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Italy</td>
+                                <td class="td-text">229,858</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">32,785 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">140,479</td>
+                                <td class="td-text">56,594</td>
+                                <td class="td-text">553</td>
+                                <td class="td-text">3,447,012</td>
+                                <td class="td-text">60,470,472 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">7</td>
+                                <td class="td-country">France</td>
+                                <td class="td-text">182,584</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">28,367 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">64,617</td>
+                                <td class="td-text">89,600</td>
+                                <td class="td-text">1,655</td>
+                                <td class="td-text">1,384,633</td>
+                                <td class="td-text">65,259,187 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">8</td>
+                                <td class="td-country">Germany</td>
+                                <td class="td-text">180,328</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">8,371 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">161,200</td>
+                                <td class="td-text">10,757</td>
+                                <td class="td-text">889</td>
+                                <td class="td-text">3,595,059</td>
+                                <td class="td-text">83,757,235</td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">9</td>
+                                <td class="td-country">Turkey</td>
+                                <td class="td-text">156,827</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">4,340 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">118,694</td>
+                                <td class="td-text">33,793</td>
+                                <td class="td-text">769</td>
+                                <td class="td-text">1,832,262</td>
+                                <td class="td-text">84,244,944</td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">10</td>
+                                <td class="td-country">India</td>
+                                <td class="td-text">139,993</td>
+                                <td class="td-new-cases">+1,457</td>
+                                <td class="td-text">4,039 </td>
+                                <td class="td-new-deaths">+15</td>
+                                <td class="td-text">58,097</td>
+                                <td class="td-text">77,857</td>
+                                <td class="td-text">8,944</td>
+                                <td class="td-text">3,033,591</td>
+                                <td class="td-text">1,378,604,014</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text">3,349,920</td>
+                            <td class="td-new-cases">+12,353</td>
+                            <td class="td-text">26,137</td>
+                            <td class="td-new-deaths">+148</td>
+                            <td class="td-text">1,460,499</td>
+                            <td class="td-text">185,030</td>
+                            <td class="td-text">42,976</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="Asia" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">Asia</td>
+                                <td>973,105</td>
+                                <td>+12,687</td>
+                                <td>27,613</td>
+                                <td>+158</td>
+                                <td>565,486</td>
+                                <td>380,006</td>
+                                <td>13,773</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">Turkey</td>
+                                <td class="td-text">156,827</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">4,340 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">118,694</td>
+                                <td class="td-text">33,793</td>
+                                <td class="td-text">769</td>
+                                <td class="td-text">1,832,262</td>
+                                <td class="td-text">84,244,944 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">India</td>
+                                <td class="td-text">139,993</td>
+                                <td class="td-new-cases">+1,457</td>
+                                <td class="td-text">4,039 </td>
+                                <td class="td-new-deaths">+15</td>
+                                <td class="td-text">58,097</td>
+                                <td class="td-text">77,857</td>
+                                <td class="td-text">8,944</td>
+                                <td class="td-text">3,033,591</td>
+                                <td class="td-text">1,378,604,014</td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">Iran</td>
+                                <td class="td-text">137,724</td>
+                                <td class="td-new-cases">+2,023</td>
+                                <td class="td-text">7,451 </td>
+                                <td class="td-new-deaths">+34</td>
+                                <td class="td-text">107,713</td>
+                                <td class="td-text">22,560</td>
+                                <td class="td-text">2,585</td>
+                                <td class="td-text">818,917</td>
+                                <td class="td-text">83,880,266 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">China</td>
+                                <td class="td-text">82,985</td>
+                                <td class="td-new-cases">+11</td>
+                                <td class="td-text">4,634 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">78,268</td>
+                                <td class="td-text">83</td>
+                                <td class="td-text">7</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,439,323,776 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">Saudi Arabia</td>
+                                <td class="td-text">72,560</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">390 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">43,520</td>
+                                <td class="td-text">28,650</td>
+                                <td class="td-text">372</td>
+                                <td class="td-text">703,534</td>
+                                <td class="td-text">34,756,224 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Pakistan</td>
+                                <td class="td-text">56,349</td>
+                                <td class="td-new-cases">+1,748</td>
+                                <td class="td-text">1,167 </td>
+                                <td class="td-new-deaths">+34</td>
+                                <td class="td-text">17,482</td>
+                                <td class="td-text">37,700</td>
+                                <td class="td-text">111</td>
+                                <td class="td-text">483,656</td>
+                                <td class="td-text">220,427,217 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">7</td>
+                                <td class="td-country">Qatar</td>
+                                <td class="td-text">45,465</td>
+                                <td class="td-new-cases">+1,751</td>
+                                <td class="td-text">26 </td>
+                                <td class="td-new-deaths">+3</td>
+                                <td class="td-text">10,363</td>
+                                <td class="td-text">35,076</td>
+                                <td class="td-text">202</td>
+                                <td class="td-text">192,484</td>
+                                <td class="td-text">,875,845 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">8</td>
+                                <td class="td-country">Bangladesh</td>
+                                <td class="td-text">35,585</td>
+                                <td class="td-new-cases">+1,975</td>
+                                <td class="td-text">501 </td>
+                                <td class="td-new-deaths">+21</td>
+                                <td class="td-text">7,334</td>
+                                <td class="td-text">27,750</td>
+                                <td class="td-text">1</td>
+                                <td class="td-text">253,034</td>
+                                <td class="td-text">164,519,918 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">9</td>
+                                <td class="td-country">Singapore</td>
+                                <td class="td-text">31,960</td>
+                                <td class="td-new-cases">+344</td>
+                                <td class="td-text">23 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">14,876</td>
+                                <td class="td-text">17,061</td>
+                                <td class="td-text">8</td>
+                                <td class="td-text">294,414</td>
+                                <td class="td-text">5,845,641 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">10</td>
+                                <td class="td-country">UAE</td>
+                                <td class="td-text">29,485</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">245 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">15,056</td>
+                                <td class="td-text">14,184</td>
+                                <td class="td-text">1</td>
+                                <td class="td-text">2,985</td>
+                                <td class="td-text">9,877,923 </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text">788,933</td>
+                            <td class="td-new-cases">+9,309</td>
+                            <td class="td-text">22,816</td>
+                            <td class="td-new-deaths">+107</td>
+                            <td class="td-text">471,403</td>
+                            <td class="td-text">294,714</td>
+                            <td class="td-text">13,000</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="North America" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">North America</td>
+                                <td>1,881,208</td>
+                                <td>+3,859</td>
+                                <td>114,405</td>
+                                <td>+236</td>
+                                <td>562,672</td>
+                                <td>1,204,131</td>
+                                <td>18,270</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">USA</td>
+                                <td class="td-text">1,686,791</td>
+                                <td class="td-new-cases">+355</td>
+                                <td class="td-text">99,311 </td>
+                                <td class="td-new-deaths">+11</td>
+                                <td class="td-text">451,745</td>
+                                <td class="td-text">1,135,735</td>
+                                <td class="td-text">17,135</td>
+                                <td class="td-text">14,749,756</td>
+                                <td class="td-text">330,806,424 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">Canada</td>
+                                <td class="td-text">84,699</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">6,424 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">43,985</td>
+                                <td class="td-text">34,290</td>
+                                <td class="td-text">502</td>
+                                <td class="td-text">1,459,288</td>
+                                <td class="td-text">37,708,187 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">Mexico</td>
+                                <td class="td-text">68,620</td>
+                                <td class="td-new-cases">+2,764</td>
+                                <td class="td-text">7,394 </td>
+                                <td class="td-new-deaths">+215</td>
+                                <td class="td-text">47,424</td>
+                                <td class="td-text">13,802</td>
+                                <td class="td-text">378</td>
+                                <td class="td-text">219,164</td>
+                                <td class="td-text">128,792,446 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">Dominican Republic</td>
+                                <td class="td-text">14,801</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">458 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">8,133</td>
+                                <td class="td-text">6,210</td>
+                                <td class="td-text">113</td>
+                                <td class="td-text">65,355</td>
+                                <td class="td-text">10,836,671 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">Panama</td>
+                                <td class="td-text">10,926</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">306 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">6,279</td>
+                                <td class="td-text">4,341</td>
+                                <td class="td-text">72</td>
+                                <td class="td-text">58,240</td>
+                                <td class="td-text">4,307,539 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Honduras</td>
+                                <td class="td-text">3,950</td>
+                                <td class="td-new-cases">+207</td>
+                                <td class="td-text">180 </td>
+                                <td class="td-new-deaths">+6</td>
+                                <td class="td-text">468</td>
+                                <td class="td-text">3,302</td>
+                                <td class="td-text">13</td>
+                                <td class="td-text">14,790</td>
+                                <td class="td-text">9,887,829 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">7</td>
+                                <td class="td-country">Guatemala</td>
+                                <td class="td-text">3,424</td>
+                                <td class="td-new-cases">+370</td>
+                                <td class="td-text">58 </td>
+                                <td class="td-new-deaths">+3</td>
+                                <td class="td-text">258</td>
+                                <td class="td-text">3,108</td>
+                                <td class="td-text">5</td>
+                                <td class="td-text">31,427</td>
+                                <td class="td-text">17,879,798 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">8</td>
+                                <td class="td-country">El Salvador</td>
+                                <td class="td-text">1,983</td>
+                                <td class="td-new-cases">+68</td>
+                                <td class="td-text">35 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">698</td>
+                                <td class="td-text">1,250</td>
+                                <td class="td-text">25</td>
+                                <td class="td-text">75,146</td>
+                                <td class="td-text">6,482,911 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">9</td>
+                                <td class="td-country">Cuba</td>
+                                <td class="td-text">1,941</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">82 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,689</td>
+                                <td class="td-text">170</td>
+                                <td class="td-text">3</td>
+                                <td class="td-text">94,060</td>
+                                <td class="td-text">11,327,291 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">10</td>
+                                <td class="td-country">Haiti</td>
+                                <td class="td-text">958</td>
+                                <td class="td-new-cases">+93</td>
+                                <td class="td-text">27 </td>
+                                <td class="td-new-deaths">+1</td>
+                                <td class="td-text">22</td>
+                                <td class="td-text">909</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">2,718</td>
+                                <td class="td-text">11,388,004 </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text">1,878,093</td>
+                            <td class="td-new-cases">+3,857</td>
+                            <td class="td-text">114,275</td>
+                            <td class="td-new-deaths">+236</td>
+                            <td class="td-text">560,701</td>
+                            <td class="td-text">120,3117</td>
+                            <td class="td-text">18,246</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="South America" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">South America</td>
+                                <td>633,783</td>
+                                <td>+1,943</td>
+                                <td>31,512</td>
+                                <td>+40</td>
+                                <td>242,207</td>
+                                <td>360,064</td>
+                                <td>10,855</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">Brazil</td>
+                                <td class="td-text">365,213</td>
+                                <td class="td-new-cases">+1,595</td>
+                                <td class="td-text">22,746 </td>
+                                <td class="td-new-deaths">+30</td>
+                                <td class="td-text">149,911</td>
+                                <td class="td-text">192,556</td>
+                                <td class="td-text">8,318</td>
+                                <td class="td-text">735,224</td>
+                                <td class="td-text">212,405,664 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">Peru</td>
+                                <td class="td-text">119,959</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">3,456 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">49,795</td>
+                                <td class="td-text">66,708</td>
+                                <td class="td-text">920</td>
+                                <td class="td-text">820,967</td>
+                                <td class="td-text">32,923,430 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">Chile</td>
+                                <td class="td-text">69,102</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">718 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">28,148</td>
+                                <td class="td-text">40,236</td>
+                                <td class="td-text">1,090</td>
+                                <td class="td-text">471,758</td>
+                                <td class="td-text">19,099,374 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">Ecuador</td>
+                                <td class="td-text">36,756</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">3,108 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">3,560</td>
+                                <td class="td-text">30,088</td>
+                                <td class="td-text">208</td>
+                                <td class="td-text">106,079</td>
+                                <td class="td-text">17,614,626 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">Colombia</td>
+                                <td class="td-text">21,175</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">727</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">5,016</td>
+                                <td class="td-text">15,432</td>
+                                <td class="td-text">136</td>
+                                <td class="td-text">252,742</td>
+                                <td class="td-text">50,826,673</td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Argentina</td>
+                                <td class="td-text">12,076</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">452 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">3,732</td>
+                                <td class="td-text">7,892</td>
+                                <td class="td-text">171</td>
+                                <td class="td-text">129,418</td>
+                                <td class="td-text">45,153,114 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">7</td>
+                                <td class="td-country">Bolivia</td>
+                                <td class="td-text">6,263</td>
+                                <td class="td-new-cases">+348</td>
+                                <td class="td-text">250 </td>
+                                <td class="td-new-deaths">+10</td>
+                                <td class="td-text">629</td>
+                                <td class="td-text">5,384</td>
+                                <td class="td-text">3</td>
+                                <td class="td-text">22,294</td>
+                                <td class="td-text">11,656,259 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">8</td>
+                                <td class="td-country">Venezuela</td>
+                                <td class="td-text">1,121</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">10 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">262</td>
+                                <td class="td-text">849</td>
+                                <td class="td-text">2</td>
+                                <td class="td-text">804,004</td>
+                                <td class="td-text">28,443,719 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">9</td>
+                                <td class="td-country">Paraguay</td>
+                                <td class="td-text">862</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">11 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">307</td>
+                                <td class="td-text">544</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">24,812</td>
+                                <td class="td-text">7,123,379 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">10</td>
+                                <td class="td-country">Uruguay</td>
+                                <td class="td-text">769</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">22 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">618</td>
+                                <td class="td-text">129</td>
+                                <td class="td-text">5</td>
+                                <td class="td-text">38,146</td>
+                                <td class="td-text">3,472,528 </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text"> 633,296</td>
+                            <td class="td-new-cases">+1,943</td>
+                            <td class="td-text">31,500</td>
+                            <td class="td-new-deaths">+40</td>
+                            <td class="td-text">241,978</td>
+                            <td class="td-text">241,978</td>
+                            <td class="td-text">359,818</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="Africa" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">Africa</td>
+                                <td>114,306</td>
+                                <td>+650</td>
+                                <td>3,377</td>
+                                <td>+21</td>
+                                <td>46,280</td>
+                                <td>64,649</td>
+                                <td>323</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">South Africa</td>
+                                <td class="td-text">22,583</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">429 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">11,100</td>
+                                <td class="td-text">11,054</td>
+                                <td class="td-text">128</td>
+                                <td class="td-text">583,855</td>
+                                <td class="td-text">59,230,390 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">Egypt</td>
+                                <td class="td-text">17,265</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">764 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">4,807</td>
+                                <td class="td-text">11,694</td>
+                                <td class="td-text">41</td>
+                                <td class="td-text">135,000</td>
+                                <td class="td-text">102,125,693 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">Algeria</td>
+                                <td class="td-text">8,306</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">600 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">4,578</td>
+                                <td class="td-text">3,128</td>
+                                <td class="td-text">22</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">43,765,771 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">Nigeria</td>
+                                <td class="td-text">7,839</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">226 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">2,263</td>
+                                <td class="td-text">5,350</td>
+                                <td class="td-text">7</td>
+                                <td class="td-text">44,458</td>
+                                <td class="td-text">205,570,171 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">Morocco</td>
+                                <td class="td-text">7,495</td>
+                                <td class="td-new-cases">+62</td>
+                                <td class="td-text">200 </td>
+                                <td class="td-new-deaths">+1</td>
+                                <td class="td-text">4,737</td>
+                                <td class="td-text">2,558</td>
+                                <td class="td-text">1</td>
+                                <td class="td-text">146,598</td>
+                                <td class="td-text">36,864,928 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Ghana</td>
+                                <td class="td-text">6,808</td>
+                                <td class="td-new-cases">+125</td>
+                                <td class="td-text">32 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">2,070</td>
+                                <td class="td-text">4,706</td>
+                                <td class="td-text">16</td>
+                                <td class="td-text">197,194</td>
+                                <td class="td-text">31,002,078 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">7</td>
+                                <td class="td-country">Cameroon</td>
+                                <td class="td-text">4,890</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">165 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,865</td>
+                                <td class="td-text">2,860</td>
+                                <td class="td-text">28</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">26,472,178 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">8</td>
+                                <td class="td-country">Sudan</td>
+                                <td class="td-text">3,820</td>
+                                <td class="td-new-cases">+192</td>
+                                <td class="td-text">165 </td>
+                                <td class="td-new-deaths">+19</td>
+                                <td class="td-text">458</td>
+                                <td class="td-text">3,197</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">401</td>
+                                <td class="td-text">43,735,987 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">9</td>
+                                <td class="td-country">Guinea</td>
+                                <td class="td-text">3,275</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">20 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,673</td>
+                                <td class="td-text">1,582</td>
+                                <td class="td-text">24</td>
+                                <td class="td-text">14,407</td>
+                                <td class="td-text">13,092,620 </td>
+
+                            </tr>
+                            <tr>
+                                <td class="td-number">10</td>
+                                <td class="td-country">Senegal</td>
+                                <td class="td-text">3,130</td>
+                                <td class="td-new-cases">+83</td>
+                                <td class="td-text">35 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,515</td>
+                                <td class="td-text">1,580</td>
+                                <td class="td-text">12</td>
+                                <td class="td-text">35,016</td>
+                                <td class="td-text">16,694,358 </td>
+
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text">85,411</td>
+                            <td class="td-new-cases">+462</td>
+                            <td class="td-text">2,636</td>
+                            <td class="td-new-deaths">+20</td>
+                            <td class="td-text">355,066</td>
+                            <td class="td-text">47,709</td>
+                            <td class="td-text">279</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="Europe" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">Europe</td>
+                                <td>1,913,403</td>
+                                <td>+11,654</td>
+                                <td>170,063</td>
+                                <td>+219</td>
+                                <td>890,691</td>
+                                <td>852,649</td>
+                                <td>9,991</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">Russia</td>
+                                <td class="td-text">353,427</td>
+                                <td class="td-new-cases">+8,946</td>
+                                <td class="td-text">3,633 </td>
+                                <td class="td-new-deaths">+92</td>
+                                <td class="td-text">118,798</td>
+                                <td class="td-text">230,996</td>
+                                <td class="td-text">2,300</td>
+                                <td class="td-text">8,945,384</td>
+                                <td class="td-text">145,928,315 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">Spain</td>
+                                <td class="td-text">282,852</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">28,752 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">196,958</td>
+                                <td class="td-text">57,142</td>
+                                <td class="td-text">854</td>
+                                <td class="td-text">3,556,567</td>
+                                <td class="td-text">46,752,999 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">UK</td>
+                                <td class="td-text">259,559</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">36,793 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">N/A</td>
+                                <td class="td-text">N/A</td>
+                                <td class="td-text">1,559</td>
+                                <td class="td-text">3,458,905</td>
+                                <td class="td-text">67,850,075 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">Italy</td>
+                                <td class="td-text">229,858</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">32,785 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">140,479</td>
+                                <td class="td-text">56,594</td>
+                                <td class="td-text">553</td>
+                                <td class="td-text">3,447,012</td>
+                                <td class="td-text">60,470,472 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">France</td>
+                                <td class="td-text">182,584</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">28,367 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">64,617</td>
+                                <td class="td-text">89,600</td>
+                                <td class="td-text">1,655</td>
+                                <td class="td-text">1,384,633</td>
+                                <td class="td-text">5,259,187 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Germany</td>
+                                <td class="td-text">180,328</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">8,371 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">161,200</td>
+                                <td class="td-text">10,757</td>
+                                <td class="td-text">889</td>
+                                <td class="td-text">3,595,059</td>
+                                <td class="td-text">83,757,235 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">7</td>
+                                <td class="td-country">Belgium</td>
+                                <td class="td-text">57,342</td>
+                                <td class="td-new-cases">+250</td>
+                                <td class="td-text">9,312 </td>
+                                <td class="td-new-deaths">+32</td>
+                                <td class="td-text">15,297</td>
+                                <td class="td-text">32,733</td>
+                                <td class="td-text">251</td>
+                                <td class="td-text">788,110</td>
+                                <td class="td-text">-11,584,564 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">8</td>
+                                <td class="td-country">Netherlands</td>
+                                <td class="td-text">45,445</td>
+                                <td class="td-new-cases">+209</td>
+                                <td class="td-text">5,830 </td>
+                                <td class="td-new-deaths">+8</td>
+                                <td class="td-text">N/A</td>
+                                <td class="td-text">N/A</td>
+                                <td class="td-text">223</td>
+                                <td class="td-text">324,918</td>
+                                <td class="td-text">17,131,112 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">9</td>
+                                <td class="td-country">Belarus</td>
+                                <td class="td-text">37,144</td>
+                                <td class="td-new-cases">+946</td>
+                                <td class="td-text">204 </td>
+                                <td class="td-new-deaths">+5</td>
+                                <td class="td-text">14,449</td>
+                                <td class="td-text">22,491</td>
+                                <td class="td-text">92</td>
+                                <td class="td-text">463,004</td>
+                                <td class="td-text">9,449,627 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">10</td>
+                                <td class="td-country">Sweden</td>
+                                <td class="td-text">33,843</td>
+                                <td class="td-new-cases">+384</td>
+                                <td class="td-text">4,029 </td>
+                                <td class="td-new-deaths">+31</td>
+                                <td class="td-text">4,971</td>
+                                <td class="td-text">24,843</td>
+                                <td class="td-text">304</td>
+                                <td class="td-text">209,900</td>
+                                <td class="td-text">10,092,886</td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text">1,662,382</td>
+                            <td class="td-new-cases">+10735</td>
+                            <td class="td-text">158,073</td>
+                            <td class="td-new-deaths">+168</td>
+                            <td class="td-text">696,769</td>
+                            <td class="td-text">525156</td>
+                            <td class="td-text">8680</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <div id="Oceania" class="tabcontent">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Country</th>
+                                <th>Total<br>Cases</th>
+                                <th>New<br>Cases</th>
+                                <th>Total<br>Deaths</th>
+                                <th>New<br>Deaths</th>
+                                <th>Total<br>Recovered</th>
+                                <th>Active<br>Cases</th>
+                                <th>Critical<br>Condition</th>
+                                <th>Total<br>Tests</th>
+                                <th>Population</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="total_in_region">
+                                <td></td>
+                                <td style="text-align:left;">Oceania</td>
+                                <td>8,726</td>
+                                <td>+4</td>
+                                <td>123</td>
+                                <td></td>
+                                <td>8,088</td>
+                                <td>515</td>
+                                <td>6</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">1</td>
+                                <td class="td-country">Australia</td>
+                                <td class="td-text">7,118</td>
+                                <td class="td-new-cases">+4</td>
+                                <td class="td-text">102 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">6,531</td>
+                                <td class="td-text">485</td>
+                                <td class="td-text">5</td>
+                                <td class="td-text">1,245,062</td>
+                                <td class="td-text">25,469,064 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">2</td>
+                                <td class="td-country">New Zealand</td>
+                                <td class="td-text">1,504</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">21 </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,456</td>
+                                <td class="td-text">27</td>
+                                <td class="td-text">1</td>
+                                <td class="td-text">261,315</td>
+                                <td class="td-text">4,818,226 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">3</td>
+                                <td class="td-country">French Polynesia</td>
+                                <td class="td-text">60</td>
+                                <td class="td-text"></td>
+                                <td class="td-text"></td>
+                                <td class="td-text"></td>
+                                <td class="td-text">60</td>
+                                <td class="td-text">0</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">3,873</td>
+                                <td class="td-text">280,744 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">4</td>
+                                <td class="td-country">Fiji</td>
+                                <td class="td-text">18</td>
+                                <td class="td-text"></td>
+                                <td class="td-text"></td>
+                                <td class="td-text"></td>
+                                <td class="td-text">15</td>
+                                <td class="td-text">3</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">1,300</td>
+                                <td class="td-text">895,784 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">5</td>
+                                <td class="td-country">New Caledonia</td>
+                                <td class="td-text">18</td>
+                                <td class="td-text"></td>
+                                <td class="td-text"> </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">18</td>
+                                <td class="td-text">0</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">5,454</td>
+                                <td class="td-text">285,215 </td>
+                            </tr>
+                            <tr>
+                                <td class="td-number">6</td>
+                                <td class="td-country">Papua New Guinea</td>
+                                <td class="td-text">8</td>
+                                <td class="td-texts"></td>
+                                <td class="td-text"> </td>
+                                <td class="td-text"></td>
+                                <td class="td-text">8</td>
+                                <td class="td-text">0</td>
+                                <td class="td-text"></td>
+                                <td class="td-text">2,402</td>
+                                <td class="td-text">8,928,690 </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <td class="td-number"></td>
+                            <td class="td-summary"><strong>Total:</strong></td>
+                            <td class="td-text">7826</td>
+                            <td class="td-new-case">+4</td>
+                            <td class="td-text">123</td>
+                            <td class="td-text"></td>
+                            <td class="td-text">8088</td>
+                            <td class="td-text">515</td>
+                            <td class="td-text">6</td>
+                            <td></td>
+                            <td></td>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="section-2">
+        <div class="img-seperator--top"></div>
+        <div class="container-fluid">
+            <div class="row section-content">
+                <div id="flip-card-1">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>What is Covid-19?</h3>
+                                <div class="flip-card-1-img"></div>
+                            </div>
+                            <div class="flip-card-back">
+                                <ul id="cardbullet">
+                                    <li>
+                                        It is an illness caused by a virus that can spread from person to person.
+                                    </li>
+                                    <li>
+                                        The virus that causes COVID-19 is a new coronavirus that has spread throughout the world. 
+                                    </li>
+                                    <li>
+                                        COVID-19 symptoms can range from mild (or no symptoms) to severe illness.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="flip-card-2">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>Symptoms</h3>
+                                <div class="flip-card-2-img"></div>
+                            </div>
+                            <div class="flip-card-back">
+                                <ul id="cardbullet">
+                                    <li>
+                                        COVID-19 shares similar symptoms as common cold and influenza
+                                    </li>
+                                    <li>
+                                        Mild gradual illness with upper respiratory tract presenting symptoms
+                                    </li>
+                                    <li>
+                                        Non-life-threatening pneumonia
+                                    </li>
+                                    <li>
+                                        Severe pneumonia with Acute Respiratory Distress Syndrome that begins with mild
+                                        symptoms for 7–8 days and then progresses to rapid deterioration.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="flip-card-3">
+                    <div class="flip-card">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <h3>Prevent the spread </h3>
+                                <div class="flip-card-3-img"></div>
+                            </div>
+                            <div class="flip-card-back">
+                                <ul id="cardbullet">
+                                    <li>
+                                        Stay home if you are sick, except to get medical care.
+                                    </li>
+                                    <li>
+                                        Avoid public transportation, ride-sharing, or taxis.
+                                    </li>
+                                    <li>
+                                        Separate yourself from other people and pets in your home. 
+                                    </li>
+                                    <li>
+                                        There is no specific treatment for COVID-19, but you can seek medical care to help relieve your symptoms.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="img-seperator--bottom"></div>
+    </div>
+
+    <!--Footer-->
+    <footer>
+        <div w3-include-html="footer.html"></div>
+    </footer>
+
+    <!--Site log in Modal-->
+    <div w3-include-html="sitemodal.html"></div>
+    <div w3-include-html="profile.html"></div>
+
+
+
+    <script src="js/script.js"></script>
+    <script>
+        includeHTML();
+        document.getElementById("defaultOpen").click();
+        //log in
+        $(window).on("hashchange", function () {
+            if (location.hash.slice(1) == "su-register") {
+                $(".su-card").addClass("su-extend");
+                $("#su-login").removeClass("su-selected");
+                $("#su-register").addClass("su-selected");
+            } else {
+                $(".su-card").removeClass("su-extend");
+                $("#su-login").addClass("su-selected");
+                $("#su-register").removeClass("su-selected");
+            }
+        });
+        $(window).trigger("hashchange");
+        //Filter Table
+        function filterFunction() {
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("country-filter");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("worldTable");
+            tr = table.getElementsByTagName("tr");
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        };
+        $(window).on("load", function () {
+            setTimeout(function () {
+                $("#loading-screen").fadeOut("slow");
+
+            }, 750);
+            setTimeout(function () {
+                $("#hero").show();
+                $("#table-stat").show();
+                $("#section-2").show();
+                $("#footer").show();
+            }, 850);
+        });
+
+        function NavbarCollapse() {
+            if (document.getElementById("navbar-toggler-icon").getAttribute("aria-expanded") == "true") {
+                $("#hero").show();
+                $("#table-stat").show();
+                $("#section-2").show();
+                $("#footer").show();
+            } else {
+                $("#hero").hide();
+                $("#table-stat").hide();
+                $("#section-2").hide();
+                $("#footer").hide();
+            }
+        };
+
+        function showUserDetails() {
+            var noUser = document.getElementById("no-user");
+            var userPresent = document.getElementById("user-present");
+            var closemodal = document.getElementById("close-modal");
+            var closeprofile = document.getElementById("close-profile");
+            
+            if (noUser.style.display === "none") {
+                noUser.style.display = "block";
+                userPresent.style.display = "none"
+                closeprofile.click()
+            }
+            else {
+                noUser.style.display = "none";
+                userPresent.style.display = "block"
+                closemodal.click()
+            }
+            return false;
+        };
+
+        function detailProcessor() {
+            var usernamevalue = document.getElementById("su-username").value;
+            var passwordvalue = document.getElementById("su-password").value;
+            var emailvalue = document.getElementById("su-email").value;
+            var hashedPassword = ""
+
+            if (usernamevalue == '') {
+                alert('Username is empty!')
+                return
+            }
+            else if (passwordvalue == '') {
+                alert('Password is empty!')
+                return
+            }
+
+            var profilePanel = document.getElementById("profile-panel");
+            var navBar = document.getElementById("username");
+            profilePanel.innerText = "Control Panel: " + usernamevalue;
+            navBar.innerText = usernamevalue;
+            document.getElementById("p-username").value = usernamevalue;
+            document.getElementById("p-email").value = emailvalue;
+            for ( i= 0; i < passwordvalue.length; i++ ) {
+                hashedPassword = hashedPassword + "*"
+            }
+            document.getElementById("p-password").value = hashedPassword;
+            showUserDetails();
+        };
+
+        function upadateProfile() {
+            var usernamevalue = document.getElementById("p-username").value;
+            var passwordvalue = document.getElementById("p-password").value;
+            var emailvalue = document.getElementById("p-email").value;
+            var hashedPassword = ""
+            
+            var navBar = document.getElementById("username");
+            profilePanel.innerText = ""
+            profilePanel.innerText = "Control Panel: " + usernamevalue;
+        
+            document.getElementById("p-username").value = usernamevalue;
+            document.getElementById("p-email").value = emailvalue;
+            for ( i= 0; i < passwordvalue.length; i++ ) {
+                hashedPassword = hashedPassword + "*"
+            }
+            document.getElementById("p-password").value = hashedPassword;
+        };
+    </script>
+</body>
+
+</html>

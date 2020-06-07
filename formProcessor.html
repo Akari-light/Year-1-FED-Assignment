@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Form Processor</title>
+    <style>
+		body {
+			cursor: url('../images/cursor.png'), auto;
+		}
+
+        article {
+			font-family: 'Libre Baskerville', serif;
+            font-size: 1.5em;
+            padding: 30px 50px;
+            border-radius: 50px 10px 50px 10px;
+            background-color: rgba(38, 38, 38, 0.4);
+            margin: 10px auto;
+            width: 500px;
+        }
+		
+        h1,h2 {
+			text-align: center;
+			cursor: auto;
+		}
+
+		p, span {
+			cursor: auto;
+		}
+
+        .blank {
+			font-weight: 600;
+			color: rgb(22, 21, 21);
+		}
+
+		hr {
+			margin: 0;
+		}
+
+		.fp-header {
+            line-height: 2em;
+		}
+		.buffer {
+			padding: 2%;
+		}
+	</style>
+</head>
+<body>
+    <script type="text/javascript">
+    //HIDE FROM INCOMPATIBLE BROWSERS
+
+        var formData = location.search;
+        formData = formData.substring(1, formData.length);
+        while (formData.indexOf("+") != -1) {
+            formData = formData.replace("+", " ");
+        }
+        formData = unescape(formData);
+        var formArray = formData.split("&");
+        var para = new Array();
+        var Name, email, subjuct;
+     // STOP HIDING FROM INCOMPATIBLE BROWSERS
+	</script>
+	<div class="buffer"></div>
+	<h1>Your form has been submitted!</h1><h2>You entered the following data:</h2>
+    <article>
+        <p class="fp-header">
+			From:  <span id="fp-email" class="blank"></span><br>
+			To:  arvin.lum@hotmail.com <br>
+			Subject:  <span id="fp-subject" class="blank"></span>
+		</p>
+		<hr>
+		<p class="fp-body">
+			Dear Arvin,<br>
+			<span id="fp-message" class="blank"></span>
+		</p>
+        <p class="fp-footer">
+			Regards,<br>
+			<span id="fp-name" class="blank"></span><br>
+        </p>
+    </article>
+    <script>
+        for (var i = 0; i < formArray.length; ++i) {
+
+            para = formArray[i].split("=");
+
+            switch (para[0]) {
+                case "name": document.getElementById("fp-name").innerHTML = para[1];
+                    break;
+                case "email":
+                    document.getElementById("fp-email").innerHTML = para[1];
+                    break;
+				case "fsubject":
+                    document.getElementById("fp-subject").innerHTML = para[1];
+                    break;
+                case "fmessage":
+                    document.getElementById("fp-message").innerHTML = para[1];
+                    break;
+
+            }
+
+        }
+        setGender();
+        setColor(color);
+
+    </script>
+</body>
+</html>
+
