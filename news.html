@@ -134,7 +134,7 @@
                 $("#world-news").hide();
                 $("#footer").hide();
             }
-        }
+        };
         function showUserDetails() {
             var noUser = document.getElementById("no-user");
             var userPresent = document.getElementById("user-present");
@@ -179,6 +179,7 @@
                 hashedPassword = hashedPassword + "*"
             }
             document.getElementById("p-password").value = hashedPassword;
+            showUserDetails();
         };
 
         function upadateProfile() {
