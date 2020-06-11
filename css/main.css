@@ -6,13 +6,13 @@
 
 :root {
     scroll-behavior: smooth;
+    cursor: url('../images/cursor.png'), auto;
 }
 
 body {
     font-family: 'Libre Baskerville', serif;
     background: #000000;
     color: #FFFFFC;
-    cursor: url('../images/cursor.png'), auto;
 }
 
 

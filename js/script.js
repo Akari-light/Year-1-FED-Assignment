@@ -97,7 +97,7 @@ function firstload(e) {
                 console.log('working')
                 newsDisplay.innerHTML = newsDisplay.innerHTML + `
                 <div class="news-display">
-                <a href="${article.url}" target="_blank"><img src="../images/no_image.jpg" alt=""></a>
+                <a href="${article.url}" target="_blank"><img src="images/no_image.jpg" alt=""></a>
                 <h6><a href="${article.url} target="_blank"">${article.title}</a></h6>
                 <p>${article.description}</p>
                 <p class="publish-date">${article.publishedAt}</p>
