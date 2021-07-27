@@ -80,6 +80,7 @@ function retrieve(e) {
     console.log(topic)
 }
 
+//First Load
 function firstload(e) {
     var newsDisplay = document.getElementById('news-section');
     newsDisplay.innerHTML = "";

@@ -29,6 +29,209 @@
     <script src="js/include.js"></script>
     <script src="js/nav-active.js"></script>
     <script src="js/web_chat.js"></script>
+    <!-- amCharts javascript sources -->
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/amcharts.js"></script>
+    <script type="text/javascript" src="https://www.amcharts.com/lib/3/serial.js"></script>
+    <!-- amCharts javascript code -->
+    <script type="text/javascript">
+        AmCharts.makeChart("chart-1", {
+            "type": "serial",
+            "categoryField": "category",
+            "startDuration": 1,
+            "theme": "default",
+            "categoryAxis": {
+                "gridPosition": "start"
+            },
+            "trendLines": [],
+            "graphs": [{
+                    "balloonText": "[[title]] of [[category]]:[[value]]",
+                    "bullet": "round",
+                    "bulletSize": 10,
+                    "id": "AmGraph-1",
+                    "lineThickness": 3,
+                    "title": "Singapore",
+                    "type": "smoothedLine",
+                    "valueField": "column-1"
+                },
+                {
+                    "balloonText": "[[title]] of [[category]]:[[value]]",
+                    "bullet": "square",
+                    "id": "AmGraph-2",
+                    "title": "Global",
+                    "type": "smoothedLine",
+                    "valueField": "column-2"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [{
+                "id": "ValueAxis-1",
+                "title": "Number of cases"
+            }],
+            "allLabels": [],
+            "balloon": {},
+            "legend": {
+                "enabled": true,
+                "useGraphSettings": true
+            },
+            "titles": [{
+                "id": "Title-1",
+                "size": 15,
+                "text": "Average monthly new  COVID-19 cases as of July 20, 2021"
+            }],
+            "dataProvider": [{
+                    "category": "January",
+                    "column-1": "1",
+                    "column-2": "12345"
+                },
+                {
+                    "category": "February",
+                    "column-1": "24",
+                    "column-2": "123456"
+                },
+                {
+                    "category": "March",
+                    "column-1": "112",
+                    "column-2": "1234567"
+                },
+                {
+                    "category": "April",
+                    "column-1": "1294",
+                    "column-2": "165432"
+                },
+                {
+                    "category": "May",
+                    "column-1": "832",
+                    "column-2": "265432"
+                },
+                {
+                    "category": "June",
+                    "column-1": "734",
+                    "column-2": "233432"
+                },
+                {
+                    "category": "July",
+                    "column-1": "87",
+                    "column-2": "233432"
+                },
+                {
+                    "category": "August",
+                    "column-1": null,
+                    "column-2": null
+                },
+                {
+                    "category": "September",
+                    "column-1": null,
+                    "column-2": null
+                },
+                {
+                    "category": "October",
+                    "column-1": null,
+                    "column-2": null
+                },
+                {
+                    "category": "November",
+                    "column-1": null,
+                    "column-2": null
+                },
+                {
+                    "category": "December",
+                    "column-1": null,
+                    "column-2": null
+                }
+            ]
+        });
+        AmCharts.makeChart("chart-2",
+				{
+					"type": "serial",
+					"categoryField": "category",
+					"startDuration": 1,
+					"categoryAxis": {
+						"gridPosition": "start"
+					},
+					"trendLines": [],
+					"graphs": [
+						{
+							"balloonText": "[[title]] of [[category]]:[[value]]",
+							"fillAlphas": 1,
+							"id": "AmGraph-1",
+							"title": "Global",
+							"type": "column",
+							"valueField": "column-1"
+						}
+					],
+					"guides": [],
+					"valueAxes": [
+						{
+							"id": "ValueAxis-1",
+							"title": "Number of cases"
+						}
+					],
+					"allLabels": [],
+					"balloon": {},
+					"legend": {
+						"enabled": true,
+						"useGraphSettings": true
+					},
+					"titles": [
+						{
+							"id": "Title-1",
+							"size": 15,
+							"text": "Total COVID-19 death cases as of July 20, 2021"
+						}
+					],
+					"dataProvider": [
+						{
+							"category": "January",
+							"column-1": "12345"
+						},
+						{
+							"category": "February",
+							"column-1": "23456"
+						},
+						{
+							"category": "March",
+							"column-1": "34567"
+						},
+						{
+							"category": "April",
+							"column-1": "45678"
+						},
+						{
+							"category": "May",
+							"column-1": "56789"
+						},
+						{
+							"category": "June",
+							"column-1": "76549"
+						},
+						{
+							"category": "July",
+							"column-1": "140239"
+						},
+						{
+							"category": "August",
+							"column-1": null
+						},
+						{
+							"category": "September",
+							"column-1": null
+						},
+						{
+							"category": "October",
+							"column-1": null
+						},
+						{
+							"category": "November",
+							"column-1": null
+						},
+						{
+							"category": "December",
+							"column-1": null
+						}
+					]
+				}
+			);
+    </script>
 </head>
 
 <body>
@@ -74,6 +277,9 @@
             </li>
             <li class="hb-nav-item">
                 <a href="#section-2" class="hb-nav-link">Know More</a>
+            </li>
+            <li class="hb-nav-item">
+                <a href="#section-4" class="hb-nav-link">Charts</a>
             </li>
             <li class="hb-nav-item">
                 <a href="#hero" class="hb-nav-link">Back to top</a>
@@ -1352,7 +1558,8 @@
                                         It is an illness caused by a virus that can spread from person to person.
                                     </li>
                                     <li>
-                                        The virus that causes COVID-19 is a new coronavirus that has spread throughout the world. 
+                                        The virus that causes COVID-19 is a new coronavirus that has spread throughout
+                                        the world.
                                     </li>
                                     <li>
                                         COVID-19 symptoms can range from mild (or no symptoms) to severe illness.
@@ -1376,9 +1583,6 @@
                                     </li>
                                     <li>
                                         Mild gradual illness with upper respiratory tract presenting symptoms
-                                    </li>
-                                    <li>
-                                        Non-life-threatening pneumonia
                                     </li>
                                     <li>
                                         Severe pneumonia with Acute Respiratory Distress Syndrome that begins with mild
@@ -1405,16 +1609,34 @@
                                         Avoid public transportation, ride-sharing, or taxis.
                                     </li>
                                     <li>
-                                        Separate yourself from other people and pets in your home. 
-                                    </li>
-                                    <li>
-                                        There is no specific treatment for COVID-19, but you can seek medical care to help relieve your symptoms.
+                                        Separate yourself from other people and pets in your home.
                                     </li>
                                 </ul>
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="img-seperator--bottom"></div>
+    </div>
+
+    <div id="section-3">
+        <div class="title">
+            <p>Coronavirus Worldwide Graphs</p>
+        </div>
+        <span>
+            Data for the charts below is added, and charts updated, after the close of the day (GMT+0).
+        </span>
+    </div>
+
+    <div id="section-4">
+        <div class="img-seperator--top"></div>
+        <div class="container-fluid">
+            <div class="row section-content">
+                <div id="chart-1" class="chart"></div>
+                <div id="chart-2" class="chart"></div>
+                <!-- <iframe src="https://public.domo.com/cards/dwoBJ" width="100%" height="400" marginheight="0" marginwidth="0" frameborder="0"></iframe> -->
             </div>
         </div>
         <div class="img-seperator--bottom"></div>
@@ -1428,8 +1650,6 @@
     <!--Site log in Modal-->
     <div w3-include-html="sitemodal.html"></div>
     <div w3-include-html="profile.html"></div>
-
-
 
     <script src="js/script.js"></script>
     <script>
@@ -1448,6 +1668,7 @@
             }
         });
         $(window).trigger("hashchange");
+
         //Filter Table
         function filterFunction() {
             var input, filter, table, tr, td, i, txtValue;
@@ -1467,17 +1688,37 @@
                 }
             }
         };
+
+        // //Loading Screen
+        // $(window).on("load", function () {
+        //     setTimeout(function () {
+        //         $("#loading-screen").fadeOut("slow");
+
+        //     }, 750);
+        //     setTimeout(function () {
+        //         $("#hero").show();
+        //         $("#table-stat").show();
+        //         $("#section-2").show();
+        //         $("#section-3").show();
+        //         $("#section-4").show();
+        //         $("#footer").show();
+        //     }, 850);
+        // });
+
+        //Temp
         $(window).on("load", function () {
             setTimeout(function () {
                 $("#loading-screen").fadeOut("slow");
 
-            }, 750);
+            }, 0);
             setTimeout(function () {
                 $("#hero").show();
                 $("#table-stat").show();
                 $("#section-2").show();
+                $("#section-3").show();
+                $("#section-4").show();
                 $("#footer").show();
-            }, 850);
+            }, 0);
         });
 
         function NavbarCollapse() {
@@ -1499,13 +1740,12 @@
             var userPresent = document.getElementById("user-present");
             var closemodal = document.getElementById("close-modal");
             var closeprofile = document.getElementById("close-profile");
-            
+
             if (noUser.style.display === "none") {
                 noUser.style.display = "block";
                 userPresent.style.display = "none"
                 closeprofile.click()
-            }
-            else {
+            } else {
                 noUser.style.display = "none";
                 userPresent.style.display = "block"
                 closemodal.click()
@@ -1522,8 +1762,7 @@
             if (usernamevalue == '') {
                 alert('Username is empty!')
                 return
-            }
-            else if (passwordvalue == '') {
+            } else if (passwordvalue == '') {
                 alert('Password is empty!')
                 return
             }
@@ -1534,7 +1773,7 @@
             navBar.innerText = usernamevalue;
             document.getElementById("p-username").value = usernamevalue;
             document.getElementById("p-email").value = emailvalue;
-            for ( i= 0; i < passwordvalue.length; i++ ) {
+            for (i = 0; i < passwordvalue.length; i++) {
                 hashedPassword = hashedPassword + "*"
             }
             document.getElementById("p-password").value = hashedPassword;
@@ -1546,14 +1785,14 @@
             var passwordvalue = document.getElementById("p-password").value;
             var emailvalue = document.getElementById("p-email").value;
             var hashedPassword = ""
-            
+
             var navBar = document.getElementById("username");
             profilePanel.innerText = ""
             profilePanel.innerText = "Control Panel: " + usernamevalue;
-        
+
             document.getElementById("p-username").value = usernamevalue;
             document.getElementById("p-email").value = emailvalue;
-            for ( i= 0; i < passwordvalue.length; i++ ) {
+            for (i = 0; i < passwordvalue.length; i++) {
                 hashedPassword = hashedPassword + "*"
             }
             document.getElementById("p-password").value = hashedPassword;
